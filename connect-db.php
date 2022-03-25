@@ -21,7 +21,7 @@ define('DB_PASSWORD', '');
 define('DEBUG', true);
 
 /**
- *  Get pdo handle to database
+ *  Get pdo handle to database 
  *
  * @return array index0 => PDO  index1 => Error message
  */
