@@ -44,10 +44,12 @@ else{
                      
             <?php foreach($desPays as $pays): ?>
           <tr>
-                <td> <?php echo $pays->Name ?></td>
+                <?php $name = $pays->Name; ?>
+                <td> <?php echo $name ?></td>
                 <td> <?php echo $pays->Population ?></td>
                 <td> <?php echo getCapital($pays->Capital) ?> </td>
                 <td> <img src= images\drapeau\<?php echo $pays->Code2 ?>.png ></td>
+                <td><a href=https://fr.wikipedia.org/wiki/<?php echo remplaceEspace($name); ?>>Wiki</a></td>
             <?php endforeach; ?>  
           </tr>
      </table>
