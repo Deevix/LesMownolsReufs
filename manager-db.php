@@ -49,6 +49,25 @@ function getCountriesByContinent($continent)
     return $prep->fetchAll();
 }
 
+function getCapital($id)
+{
+    global $pdo;
+
+    if(empty($id))
+    {
+        echo("PAS DE CAPITALE");
+    }
+    else
+    {
+        $query = "SELECT city.Name FROM city WHERE id = :id ;";
+        $prep = $pdo->prepare($query);
+        $prep->bindValue(':id', $id, PDO::PARAM_STR);
+        $prep->execute();
+        return $prep->fetch()->Name;
+    }
+    
+}
+
 /**
  * Obtenir la liste des pays
  *
@@ -61,23 +80,57 @@ function getAllCountries()
     return $pdo->query($query)->fetchAll();
 }
 
-function getCapital($id){
+function deleteCompte($id)
+  {
     global $pdo;
-    if(empty($id)){
-        echo("VOID");
+    $query = "DELETE FROM compte WHERE idcompte = :id ;";
+    try 
+    {
+	    $prep = $pdo->prepare($query);
+	    $prep->bindValue(':id', $id);
+	    $prep->execute();
     }
-    else {
-        $query = 'SELECT city.Name FROM City WHERE id = :id;';
-        $prep = $pdo->prepare($query);
-        $prep->bindValue(':id', $id, PDO::PARAM_STR);
-        $prep->execute();
-    
-        return $prep->fetch()->NameC;
-    }
+    catch ( Exception $e ) 
+    {
+	    die ("erreur dans la requete ".$e->getMessage());
+    }    
+  }
 
-   
-}
-function remplaceEspace($nom){
+  function getAuthentification($login,$pass)
+  {
+    global $pdo;
+    $query = "SELECT * FROM compte where login=:login and password=:pass";
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':login', $login);
+    $prep->bindValue(':pass', $pass);
+    $prep->execute();
+    // on vérifie que la requête ne retourne qu'une seule ligne
+
+    if($prep->rowCount() == 1)
+    {
+      $result = $prep->fetch();
+      return $result;
+    }
+    else
+      return false;
+  }
+
+  function ajoutCompte()
+  {
+    global $pdo;
+    $login=$_POST['login'];
+    $password=$_POST['password'];
+    $role=$_POST['role'];
+    $requete = "INSERT INTO compte (login, password, role) VALUES(:login, :password, :role)";
+    $query = $pdo->prepare($requete);
+    $query->bindValue(':login', $login, PDO::PARAM_STR);
+    $query->bindValue(':password', $password, PDO::PARAM_STR);
+    $query->bindValue(':role', $role, PDO::PARAM_STR);
+    $query->execute(array(':login'=>$login, ':password'=>$password, ':role'=>$role));
+    echo '<font color="red">Le compte a bien été ajouté</font>';
+  } 
+
+  function remplaceEspace($nom){
     global $pdo;
     for($i=0;$i<=strlen($nom)-1;$i++){
         if($nom[$i] == ' ' ){
@@ -89,3 +142,5 @@ function remplaceEspace($nom){
     } 
     return $nom;
 }
+
+?>
