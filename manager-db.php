@@ -142,5 +142,14 @@ function deleteCompte($id)
     } 
     return $nom;
 }
+function getDetailsPays($id)
+{
+    global $pdo;
+    $query = 'SELECT Name, Continent, Region, IndepYear, Population, LifeExpectancy, GNP, LocalName, GovernmentForm, HeadOfState, Capital FROM Country where id = :id;';
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':id', $id, PDO::PARAM_STR);
+    $prep->execute();
+    return $prep->fetchALL();
+}
 
 ?>
