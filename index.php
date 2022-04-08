@@ -36,6 +36,7 @@ else{
            <th>Population</th>
            <th>Capital</th>
            <th>Drapeau</th>
+           <th>Page Wikipédia</th>
          </tr>
        <?php
        // $desPays est un tableau dont les éléments sont des objets représentant
@@ -49,7 +50,7 @@ else{
                 <td> <?php echo $pays->Population ?></td>
                 <td> <?php echo getCapital($pays->Capital) ?> </td>
                 <td> <img src= images\drapeau\<?php echo $pays->Code2 ?>.png ></td>
-                <td><a href=https://fr.wikipedia.org/wiki/<?php echo remplaceEspace($name); ?>>Wiki</a></td>
+                <td><a href=https://en.wikipedia.org/wiki/<?php echo remplaceEspace($name); ?>>Wiki</a></td>
             <?php endforeach; ?>  
           </tr>
      </table>
