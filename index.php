@@ -16,6 +16,15 @@
 <?php  require_once 'header.php'; ?>
 <?php
 require_once 'inc/manager-db.php';
+
+session_start();
+if(isset($_SESSION['login']) && isset($_SESSION['role']))
+{
+  echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['login']."(".$_SESSION['role'].")";
+}
+else
+  header('location: authentification.php');
+
 if(empty($_GET['Continent'])){
   $continent = 'Asia';
 }
@@ -24,6 +33,14 @@ else{
 }
  $desPays = getCountriesByContinent($continent);
 ?>
+
+<?php if ($_SESSION['role'] == 'étudiant' || $_SESSION['role'] == 'professeur' || $_SESSION['role'] == 'admin') : ?>
+  <p style = text-align:right;><a href = "formPDO.php?id=<?php echo $_SESSION['identifiant'] ?>">Mettre à jour le profil</a></p>
+<?php endif; ?>
+
+<?php if ($_SESSION['role'] == 'admin') : ?>
+  <p style = text-align:right;><a href = "ajout.php">Ajouter un compte</a></p>
+<?php endif; ?>
 
 <main role="main" class="flex-shrink-0">
 
