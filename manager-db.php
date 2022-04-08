@@ -73,15 +73,19 @@ function getCapital($id){
         $prep->execute();
     
         return $prep->fetch()->NameC;
-    }  
+    }
+
+   
 }
-function remplaceEspace($zut){
+function remplaceEspace($nom){
     global $pdo;
-    for($i=0;$i<=strlen($zut)-1;$i++){
-        if($zut[$i] == ' ' ){
-            $zut[$i] = '_';
+    for($i=0;$i<=strlen($nom)-1;$i++){
+        if($nom[$i] == ' ' ){
+            $nom[$i] = '_';
         }
-         
+        elseif($nom[$i]==","){
+            $nom=' ';
+        }
     } 
-    return $zut;
+    return $nom;
 }
