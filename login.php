@@ -19,7 +19,7 @@
             $_SESSION['identifiant'] = $result->idcompte;
             $_SESSION['role'] = $result->role;
             // on redirige notre visiteur vers une page de notre section membre
-            header ('location: index.php');
+            header ('location: homepage.php');
         }
         //si le résultat est false on redirige vers la page d'authentification
         else
