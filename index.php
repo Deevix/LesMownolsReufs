@@ -45,6 +45,7 @@ else{
                      
             <?php foreach($desPays as $pays): ?>
           <tr>
+                <?php $name = $pays->Name; ?>
                 <td> <a href=detailsPays.php?id=<?php echo $pays->id ?>> <?php echo $pays->Name ?></a></td>
                 <td> <?php echo $name ?></td>
                 <td> <?php echo $pays->Population ?></td>
