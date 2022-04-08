@@ -67,7 +67,7 @@ function getCapital($id){
         echo("VOID");
     }
     else {
-        $query = 'SELECT city.NameC FROM City WHERE id = :id;';
+        $query = 'SELECT city.Name FROM City WHERE id = :id;';
         $prep = $pdo->prepare($query);
         $prep->bindValue(':id', $id, PDO::PARAM_STR);
         $prep->execute();
