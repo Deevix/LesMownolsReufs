@@ -16,15 +16,28 @@
 	<?php foreach ($detailsPays as $dPays): ?> 
 	<ul class="list-group bg-dark">
 	<li class="list-group-item active">Détails</li>
+	<p></p>
+	<li class="list-group-item">ID : <?php echo $dPays->id ?> </li>
   	<li class="list-group-item">Pays : <?php echo $dPays->Name ?> </li>
+	<li class="list-group-item">Nom local: <?php echo $dPays->LocalName ?> </li>
+	<li class="list-group-item">Superficie actuelle (Km²): <?php echo $dPays->SurfaceArea ?> </li>
+	<li class="list-group-item">Dirigeant: <?php echo $dPays->HeadOfState ?> </li>
+	<li class="list-group-item">Type de gouvernement: <?php echo $dPays->GovernmentForm ?> </li>
   	<li class="list-group-item">Continent : <?php echo $dPays->Continent ?> </li>
-  	<li class="list-group-item">Region : <?php echo $dPays->Region ?> </li>
+  	<li class="list-group-item">Region : <?php echo $dPays->Region ?> </li>	
+	<li class="list-group-item">Code à 3 lettres: <?php echo $dPays->Code ?> </li>
   	<li class="list-group-item">Année d'Independance : <?php echo $dPays->IndepYear ?> </li>
   	<li class="list-group-item">Population : <?php echo $dPays->Population ?> </li>
   	<li class="list-group-item">Espérence de vie: <?php echo $dPays->LifeExpectancy ?> </li>
-</ul>
+	<li class="list-group-item">Produit national brut (PNB): <?php echo $dPays->GNP ?> </li>
+	<li class="list-group-item">Ancien PNB: <?php echo $dPays->GNPOld ?> </li>
+	
+	</ul>
+	<br>
+	<br>
+	<br>
 		<form action = index.php>
-	<button href="index.php" target="_parent" type="submit" class="btn btn-success"> Retour à l'accueil</button>
+	<button href="index.php" target="_parent" type="submit" class="btn-lg btn-success"> Retour à l'accueil</button>
 	</form>
 	<?php endforeach; ?>   
 
